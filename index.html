@@ -1,1 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Fascinate&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Titan+One&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Squada+One&family=Titan+One&display=swap");
+    </style>
+    <title>Tic-Tac-Toe by DMC</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="app.js"></script>
+  </head>
+  <header>
+    <span class="Title"><h1>Tic Tac Toe</h1></span>
+    <h2>Let's Play!</h2>
+    <p class="input-container">
+      <input placeholder = "Player 1" id="input" />
+      <input placeholder= "Player 2" id="input2" />
+      <button type = "button" id ="submit-button">Game On!</button>
+    </p> 
+  </br>   
+    
+    <h4 class = "gamers" id="player1"></h4>
+    <h4 class = "gamers" id="player2"></h4>
+    
+  </br>
+  </header>
+  <body>
+    <!-- MY NEXT TRY ↓ -->
 
+    <div class="board" id="board">
+      <div class="cell" id="0"></div>
+      <div class="cell" id="1"></div>
+      <div class="cell" id="2"></div>
+      <div class="cell" id="3"></div>
+      <div class="cell" id="4"></div>
+      <div class="cell" id="5"></div>
+      <div class="cell" id="6"></div>
+      <div class="cell" id="7"></div>
+      <div class="cell" id="8"></div> 
+    </br>
+  </div>
+    <!-- ↓ Get rid of this code and do it correctly ↓ -->
+     <p class = "input-container"><button onClick="window.location.reload();">Start Over!</button></p>
+     <!-- <p class = "input-container"><button id = "start-over">Start Over!</button></p>
+     -->
+   <section>
+    <h1 class = "scoreBoard" id = "scoreBoard"></h1></section>
+    <h4 class = "scoreBoard" id="player1"></h4>
+    <h4 class = "scoreBoard" id="player2"></h4>
+  </body>
+</html>
