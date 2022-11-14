@@ -7,10 +7,10 @@ let input2 = document.getElementById("input2");
 let button = document.getElementById("submit-button");
 button.addEventListener("click", function (event) {
   const player1 =
-    "Hi there " + input.value + " - You'll be (X) and you go first!";
+    "Hi there " + input.value + " - You'll be - X - and you go first!";
 
   const player2 =
-    "Hello " + input2.value + " - You'll be (O), so who's the best?";
+    "Hello " + input2.value + " - You'll be - O -, so who's the best?";
 
   playerOneName.innerText = player1;
   playerTwoName.innerText = player2;
@@ -22,6 +22,7 @@ let gameState = {
 
   currentPlayer: "X",
 };
+
 function switchPlayer() {
   if (gameState.currentPlayer === "X") {
     gameState.currentPlayer = "O";
@@ -38,7 +39,7 @@ board.addEventListener("click", function (e) {
 
   renderBoard();
   switchPlayer();
-  calculateWinner();
+  calculateWinner("X", "O");
 });
 
 function renderBoard() {
@@ -47,9 +48,9 @@ function renderBoard() {
     currDiv.innerText = gameState.board[i];
   }
 }
-const winner = calculateWinner(currentPlayer.board);
+const winner = calculateWinner(gameState.board);
 
-function calculateWinner(cell) {
+function calculateWinner(moves) {
   const winningPattern = [
     [0, 1, 2],
     [3, 4, 5],
@@ -62,20 +63,44 @@ function calculateWinner(cell) {
   ];
   for (let i = 0; i < winningPattern.length; i++) {
     const [a, b, c] = winningPattern[i];
-    if (cell[a] && cell[a] === cell[b] && cell[a] === cell[c]) {
-      return cell[a];
+    if (moves[a] && moves[a] === moves[b] && moves[a] === moves[c]) {
+      return gameState.currentPlayer;
     }
   }
-  return null;
+  return "";
 }
-calculateWinner.innerText.section;
-if (player1 === winningPattern) {
-}
+const showWinner = document.createElement("div");
+showWinner.innerHTML = "The WINNER is " + winner;
+document.getElementById("winner").appendChild(showWinner);
+
+// const reloadButton = document.getElementById("start-over");
+// function reload() {
+//   reload = window.location.reload();
+//   preventDefault();
+// }
+
+// if (showWinner === null) {
+//   return "";
+// }
+
+// winner.innerText = currentPlayer;
+// // let winner1;
+// calculateWinner.innerText.section("winner");
+// if (player1 === winningPattern) {
+//   return "You Win!" + player1;
+// } else {
+//   return "You Win!" + player2;
+// }
+// To hide an element, set the style display property to “none”.
+
+// document.getElementById("element").style.display = "none";
+// To show an element, set the style display property to “block”.
+
+// document.getElementById("element").style.display = "block";
 // })
 //let winner = section.getElementById("scoreBoard");
 
-const reloadButton = document.getElementById("start-over");
-function reload() {
-  reload = location.reload();
-  preventDefault();
-}
+// }
+//button.addEventListener("click", function (event)
+// let restartButton = document.getElementById("start-over");
+// restartButton.addEventListener("click", window.location.reload);

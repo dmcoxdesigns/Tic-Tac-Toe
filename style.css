@@ -92,6 +92,7 @@ h4 {
   align-items: center;
   border-style: inset;
 }
+
 .cell:first-child,
 .cell:nth-child(2),
 .cell:nth-child(3) {
@@ -145,4 +146,16 @@ label {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
   font-size: 18px;
+}
+section {
+  display: flex;
+  margin: 0 auto;
+  flex-direction: row;
+  justify-content: center;
+}
+#start-over {
+  display: flex;
+  margin: 0 auto;
+  flex-direction: row;
+  justify-content: center;
 }
