@@ -21,6 +21,8 @@ let gameState = {
   board: [null, null, null, null, null, null, null, null, null],
 
   currentPlayer: "X",
+  isPlaying: true,
+  winner: "",
 };
 
 function switchPlayer() {
@@ -30,16 +32,20 @@ function switchPlayer() {
     gameState.currentPlayer = "X";
   }
 }
+
 const board = document.getElementById("board");
 
 board.addEventListener("click", function (e) {
   const index = +e.target.id;
+  if (gameState.board[index] === null && gameState.isPlaying) {
+    gameState.board[index] = gameState.currentPlayer;
 
-  gameState.board[index] = gameState.currentPlayer;
-
-  renderBoard();
-  switchPlayer();
-  calculateWinner("X", "O");
+    renderBoard();
+    gameState.winner = calculateWinner(["X", "O"]);
+    document.getElementById("winner").innerHTML =
+      "The WINNER is: " + gameState.winner;
+    switchPlayer();
+  }
 });
 
 function renderBoard() {
@@ -48,7 +54,6 @@ function renderBoard() {
     currDiv.innerText = gameState.board[i];
   }
 }
-const winner = calculateWinner(gameState.board);
 
 function calculateWinner(moves) {
   const winningPattern = [
@@ -63,44 +68,33 @@ function calculateWinner(moves) {
   ];
   for (let i = 0; i < winningPattern.length; i++) {
     const [a, b, c] = winningPattern[i];
-    if (moves[a] && moves[a] === moves[b] && moves[a] === moves[c]) {
+    let l1 = gameState.board[a];
+    let l2 = gameState.board[b];
+    let l3 = gameState.board[c];
+    console.log([l1, l2, l3]);
+    if (l1 === l2 && l1 === l3 && l1 !== null && l2 !== null && l3 !== null) {
+      gameState.isPlaying = false;
+
       return gameState.currentPlayer;
     }
   }
   return "";
 }
 const showWinner = document.createElement("div");
-showWinner.innerHTML = "The WINNER is " + winner;
-document.getElementById("winner").appendChild(showWinner);
 
-// const reloadButton = document.getElementById("start-over");
-// function reload() {
-//   reload = window.location.reload();
-//   preventDefault();
-// }
+let resetButton = document.querySelector(".reset");
+resetButton.addEventListener("click", function (e) {
+  resetGame();
+});
 
-// if (showWinner === null) {
-//   return "";
-// }
-
-// winner.innerText = currentPlayer;
-// // let winner1;
-// calculateWinner.innerText.section("winner");
-// if (player1 === winningPattern) {
-//   return "You Win!" + player1;
-// } else {
-//   return "You Win!" + player2;
-// }
-// To hide an element, set the style display property to “none”.
-
-// document.getElementById("element").style.display = "none";
-// To show an element, set the style display property to “block”.
-
-// document.getElementById("element").style.display = "block";
-// })
-//let winner = section.getElementById("scoreBoard");
-
-// }
-//button.addEventListener("click", function (event)
-// let restartButton = document.getElementById("start-over");
-// restartButton.addEventListener("click", window.location.reload);
+function resetGame() {
+  let cell;
+  for (let i = 0; i < gameState.board.length; i++) {
+    gameState.board[i] = null;
+    cell = document.getElementById(`${i}`);
+    cell.innerText = "";
+  }
+  gameState.currentPlayer = "X";
+  gameState.isPlaying = true;
+  gameState.winner = "";
+}
